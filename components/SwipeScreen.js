@@ -93,15 +93,44 @@ const ListItem = ({ text }) => (
         </Swipeable>
     </GestureHandlerRootView>
 );
+
+const ListItems = ({ text }) => (
+    <GestureHandlerRootView>
+        <Swipeable
+            renderLeftActions={LeftSwipeActions}
+            renderRightActions={rightSwipeActions}
+            onSwipeableRightOpen={swipeFromRightOpen}
+            onSwipeableLeftOpen={swipeFromLeftOpen}
+        >
+            <View
+                style={{
+                    paddingHorizontal: 30,
+                    paddingVertical: 20,
+                    backgroundColor: 'white',
+                }}
+            >
+
+                <View style={styles.image}>
+                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                        <Image source={require("../assets/room2.jpg")} style={{
+                            height: 100,
+                            width: 100,
+                        }} />
+                    </View>
+                    <View style={{ backgroundColor: 'grey', paddingVertical: 10 }}>
+                        <Text>Swipe right to like or left to dislike</Text>
+                    </View>
+
+                </View>
+            </View>
+        </Swipeable>
+    </GestureHandlerRootView>
+);
 const SwipeScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
-            <FlatList
-                data={todoList}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => <ListItem {...item} />}
-                ItemSeparatorComponent={() => <Separator />}
-            />
+            <ListItem />
+            <ListItems />
         </SafeAreaView>
     );
 };
